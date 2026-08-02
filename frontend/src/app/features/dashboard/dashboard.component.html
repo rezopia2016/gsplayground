@@ -1,0 +1,46 @@
+<h1>Operational Dashboard</h1>
+
+<div class="gsp-stat-row">
+  <div class="gsp-card">
+    <div class="gsp-stat-value">{{ shipments.length }}</div>
+    <div class="gsp-stat-label">Total Shipments</div>
+  </div>
+  <div class="gsp-card">
+    <div class="gsp-stat-value">{{ inTransitCount }}</div>
+    <div class="gsp-stat-label">In Transit / Dispatched</div>
+  </div>
+  <div class="gsp-card">
+    <div class="gsp-stat-value">{{ exceptionCount }}</div>
+    <div class="gsp-stat-label">Exceptions</div>
+  </div>
+  <div class="gsp-card">
+    <div class="gsp-stat-value">{{ failedSyncCount }}</div>
+    <div class="gsp-stat-label">Failed D365 Syncs</div>
+  </div>
+</div>
+
+<div class="gsp-card" *ngIf="!loading">
+  <h2>Recent Shipments</h2>
+  <table class="gsp-table">
+    <thead>
+      <tr>
+        <th>Shipment #</th>
+        <th>Status</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Carrier</th>
+        <th>Tracking #</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let shipment of shipments.slice(0, 10)">
+        <td>{{ shipment.shipmentNumber }}</td>
+        <td><span class="gsp-badge">{{ shipment.status }}</span></td>
+        <td>{{ shipment.originCountryCode }}</td>
+        <td>{{ shipment.destinationCountryCode }}</td>
+        <td>{{ shipment.carrierCode || '—' }}</td>
+        <td>{{ shipment.carrierTrackingNumber || '—' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

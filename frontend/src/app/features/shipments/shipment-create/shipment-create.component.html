@@ -1,0 +1,97 @@
+<h1>New Shipment</h1>
+
+<form [formGroup]="form" (ngSubmit)="submit()" class="gsp-card gsp-form">
+  <label>
+    D365 Order Reference (optional)
+    <input type="text" formControlName="d365OrderReference" placeholder="SO-1001" />
+  </label>
+
+  <label>
+    Direction
+    <select formControlName="direction">
+      <option value="Outbound">Outbound</option>
+      <option value="Inbound">Inbound</option>
+      <option value="Return">Return</option>
+    </select>
+  </label>
+
+  <div class="gsp-form-row">
+    <label>
+      Origin Country
+      <input type="text" formControlName="originCountryCode" maxlength="2" />
+    </label>
+    <label>
+      Destination Country
+      <input type="text" formControlName="destinationCountryCode" maxlength="2" />
+    </label>
+  </div>
+
+  <label>
+    Origin Address
+    <textarea formControlName="originAddress" rows="2"></textarea>
+  </label>
+
+  <label>
+    Destination Address
+    <textarea formControlName="destinationAddress" rows="2"></textarea>
+  </label>
+
+  <label>
+    Material Classification
+    <select formControlName="materialClassification">
+      <option value="Standard">Standard</option>
+      <option value="BiologicalSample">Biological Sample</option>
+      <option value="DryIce">Dry Ice</option>
+      <option value="HazardousMaterial">Hazardous Material</option>
+      <option value="TemperatureControlled">Temperature Controlled</option>
+    </select>
+  </label>
+
+  <div class="gsp-form-row">
+    <label class="gsp-checkbox">
+      <input type="checkbox" formControlName="requiresTemperatureControl" />
+      Requires temperature control
+    </label>
+    <label class="gsp-checkbox">
+      <input type="checkbox" formControlName="isVipHandling" />
+      VIP handling
+    </label>
+  </div>
+
+  <label>
+    Customer Type
+    <input type="text" formControlName="customerType" placeholder="OEM, Standard, VIP..." />
+  </label>
+
+  <label>
+    Total Weight (kg) — for rate quoting
+    <input type="number" formControlName="totalWeightKg" step="0.01" />
+  </label>
+
+  <div class="gsp-form-actions">
+    <button type="button" (click)="getRates()">Get Carrier Rates</button>
+    <button type="submit" [disabled]="submitting">Create Shipment</button>
+  </div>
+</form>
+
+<div class="gsp-card" *ngIf="rates.length">
+  <h2>Carrier Rate Comparison</h2>
+  <table class="gsp-table">
+    <thead>
+      <tr>
+        <th>Carrier</th>
+        <th>Service</th>
+        <th>Amount</th>
+        <th>Transit Days</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rate of rates">
+        <td>{{ rate.carrierCode }}</td>
+        <td>{{ rate.serviceName }}</td>
+        <td>{{ rate.amount | number: '1.2-2' }} {{ rate.currencyCode }}</td>
+        <td>{{ rate.estimatedTransitDays }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

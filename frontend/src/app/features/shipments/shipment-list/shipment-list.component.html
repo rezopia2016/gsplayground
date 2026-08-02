@@ -1,0 +1,51 @@
+<div class="gsp-header-row">
+  <h1>Shipments</h1>
+  <a routerLink="/shipments/new" class="gsp-badge">+ New Shipment</a>
+</div>
+
+<div class="gsp-card gsp-filters">
+  <input type="text" placeholder="Search by shipment # or tracking #" [(ngModel)]="searchTerm" name="search" />
+  <select [(ngModel)]="statusFilter" name="statusFilter">
+    <option value="All">All statuses</option>
+    <option value="Created">Created</option>
+    <option value="Ready">Ready</option>
+    <option value="Dispatched">Dispatched</option>
+    <option value="InTransit">In Transit</option>
+    <option value="Delivered">Delivered</option>
+    <option value="Exception">Exception</option>
+    <option value="Cancelled">Cancelled</option>
+  </select>
+</div>
+
+<div class="gsp-card">
+  <table class="gsp-table">
+    <thead>
+      <tr>
+        <th>Shipment #</th>
+        <th>Status</th>
+        <th>Direction</th>
+        <th>Route</th>
+        <th>Carrier</th>
+        <th>Tracking #</th>
+        <th>Created</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let shipment of filteredShipments">
+        <td>{{ shipment.shipmentNumber }}</td>
+        <td><span class="gsp-badge">{{ shipment.status }}</span></td>
+        <td>{{ shipment.direction }}</td>
+        <td>{{ shipment.originCountryCode }} → {{ shipment.destinationCountryCode }}</td>
+        <td>{{ shipment.carrierCode || '—' }}</td>
+        <td>{{ shipment.carrierTrackingNumber || '—' }}</td>
+        <td>{{ shipment.createdAtUtc | date: 'short' }}</td>
+        <td>
+          <button *ngIf="shipment.status === 'Created' || shipment.status === 'Ready'" (click)="cancelShipment(shipment)">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

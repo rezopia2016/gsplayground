@@ -1,0 +1,28 @@
+.gsp-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  a.gsp-badge {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+}
+
+.gsp-filters {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+
+  input,
+  select {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #d0d5d8;
+    border-radius: 4px;
+  }
+
+  input {
+    flex: 1;
+  }
+}

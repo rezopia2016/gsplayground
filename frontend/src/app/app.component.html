@@ -1,0 +1,15 @@
+<div class="gsp-shell">
+  <nav class="gsp-nav">
+    <div class="gsp-nav__brand">{{ title }}</div>
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/shipments" routerLinkActive="active">Shipments</a>
+    <a routerLink="/kits" routerLinkActive="active">Kits</a>
+    <a routerLink="/labels" routerLinkActive="active">Labels</a>
+    <a routerLink="/tracking" routerLinkActive="active">Tracking</a>
+    <a routerLink="/carriers" routerLinkActive="active">Carriers</a>
+    <a routerLink="/d365-sync" routerLinkActive="active">D365 Sync</a>
+  </nav>
+  <main class="gsp-content">
+    <router-outlet />
+  </main>
+</div>

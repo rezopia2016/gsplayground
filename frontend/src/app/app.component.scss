@@ -1,0 +1,37 @@
+.gsp-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.gsp-nav {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--gsp-color-primary);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+
+  &__brand {
+    font-weight: 700;
+    padding: 0 1rem 1rem;
+    font-size: 1rem;
+  }
+
+  a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+
+    &.active,
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+    }
+  }
+}
+
+.gsp-content {
+  flex: 1;
+  padding: 1.5rem;
+}

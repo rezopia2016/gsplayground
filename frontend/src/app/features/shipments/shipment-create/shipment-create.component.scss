@@ -1,0 +1,44 @@
+.gsp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 640px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+    color: #445;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 0.5rem 0.6rem;
+    border: 1px solid #d0d5d8;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+}
+
+.gsp-form-row {
+  display: flex;
+  gap: 1rem;
+
+  label {
+    flex: 1;
+  }
+}
+
+.gsp-checkbox {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.5rem !important;
+}
+
+.gsp-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
